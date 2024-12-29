@@ -1,7 +1,7 @@
  "use client"
- import Button from "../../../components/ui/button.jsx";
+ import { Button} from "../../../components/ui/button.jsx";
  import React, { useState } from "react";
-//  import Dialog from "@/components/ui/dialog";
+//  import Dialog from "../../../components/ui/dialog";
  import {
     Dialog,
     DialogContent,
@@ -9,7 +9,9 @@
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-  } from "../../../@/components/ui/dialog.jsx";
+  } from "../../../components/ui/dialog.jsx";
+  import { Input } from "../../../components/ui/input.jsx";
+  import { Textarea } from "../../../components/ui/textarea.jsx";
   
  
  function AddNewInterview() {
@@ -24,14 +26,51 @@
         </div>
         <Dialog open={openDailog}>
           
-            <DialogContent>
+            <DialogContent className="max-w-2xl">
                 <DialogHeader>
-                <DialogTitle>Are you absolutely sure?</DialogTitle>
+                <DialogTitle className="text-2xl">Ready For Your Mock Interview?</DialogTitle>
                 <DialogDescription>
-                    This action cannot be undone. This will permanently delete your account
-                    and remove your data from our servers.
-                    <Button>Cancel</Button>
+                    <div> 
+                      
+                      <h2>Tell us about the job role,your skills,and experience</h2>
+                      <div className="mt-7 my-3">
+                        <label>Job Role/Job Position</label>
+                        <Input
+                      className="mt-1"
+                      placeholder="Ex. Full stack Developer"
+                      required
+                      onChange={(e) => setJobPosition(e.target.value)}
+                    />
+                        
+                      </div>
+                      <div className="my-5">
+                    <label>
+                      Job Description/ Tech stack (In Short)
+                    </label>
+                    <Textarea
+                      className="placeholder-opacity-50"
+                      placeholder="Ex. React, Angular, Nodejs, Mysql, Nosql, Python"
+                      required
+                      onChange={(e) => setJobDesc(e.target.value)}
+                    />
+                  </div>
+                  <div className="my-5">
+                    <label className="text-black">Years of Experience</label>
+                    <Input
+                      className="mt-1"
+                      placeholder="Ex. 5"
+                      max="50"
+                      type="number"
+                      required
+                      onChange={(e) => setJobExperience(e.target.value)}
+                    />
+                  </div>
+
+                    </div>
+                    <div className='flex gap-5 justify-end'>
+                    <Button variant="ghost" onClick={()=>setOpenDailog(false)}>Cancel</Button>
                     <Button>Start Interview</Button>
+                    </div>
                 </DialogDescription>
                 </DialogHeader>
             </DialogContent>
